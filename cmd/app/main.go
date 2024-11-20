@@ -46,8 +46,10 @@ func main() {
 	router := mux.NewRouter()
 
 	shopifyRouter := router.PathPrefix("/api/shopify").Subrouter()
+	chatbotRouter := router.PathPrefix("/api/chatbot").Subrouter()
 
 	routes.ShopifyRoutes(shopifyRouter)
+	routes.ChatBotRoutes(chatbotRouter)
 
 	handler := corsMiddleware.Handler(router)
 
