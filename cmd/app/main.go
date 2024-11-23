@@ -10,6 +10,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 	"github.com/rs/cors"
+	"strategy-fox-go-bd/pkg/config"
 	"strategy-fox-go-bd/pkg/routes"
 )
 
@@ -52,6 +53,8 @@ func main() {
 	routes.ChatBotRoutes(chatbotRouter)
 
 	handler := corsMiddleware.Handler(router)
+
+	config.InitRedis()
 
 	log.Printf("Server is running on port %s", port)
 	if err := http.ListenAndServe(":"+port, handler); err != nil {
